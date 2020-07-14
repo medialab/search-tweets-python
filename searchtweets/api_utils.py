@@ -83,7 +83,12 @@ def convert_utc_time(datetime_str):
 
 def gen_request_parameters(query, results_per_call=None,
                            start_time=None, end_time=None, since_id=None, until_id=None,
+                           expansions=None,
                            tweet_fields=None,
+                           user_fields=None,
+                           media_fields=None,
+                           place_fields=None,
+                           poll_fields=None,
                            stringify=True):
 
     """
@@ -126,8 +131,18 @@ def gen_request_parameters(query, results_per_call=None,
         payload["since_id"] = since_id
     if until_id:
         payload["until_id"] = until_id
+    if expansions:
+        payload["expansions"] = expansions
     if tweet_fields:
         payload["tweet.fields"] = tweet_fields
+    if user_fields:
+        payload["user.fields"] = user_fields
+    if media_fields:
+        payload["media.fields"] = media_fields
+    if place_fields:
+        payload["place.fields"] = place_fields
+    if poll_fields:
+        payload["tweet.fields"] = poll_fields
 
     return json.dumps(payload) if stringify else payload
 
@@ -160,7 +175,12 @@ def gen_params_from_config(config_dict):
                             end_time=config_dict.get("end_time", None),
                             since_id=config_dict.get("since_id", None),
                             until_id=config_dict.get("until_id", None),
+                            expansions=config_dict.get("expansions", None),
                             tweet_fields=config_dict.get("tweet_fields", None),
+                            user_fields=config_dict.get("user_fields", None),
+                            media_fields=config_dict.get("media_fields", None),
+                            place_fields=config_dict.get("place_fields", None),
+                            poll_fields=config_dict.get("poll_fields", None),
                             results_per_call=results_per_call)
                             #count_bucket=config_dict.get("count_bucket", None))
 

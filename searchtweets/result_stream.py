@@ -16,7 +16,7 @@ try:
     import ujson as json
 except ImportError:
     import json
-from tweet_parser.tweet import Tweet
+#from tweet_parser.tweet import Tweet
 
 from .utils import merge_dicts
 
@@ -192,7 +192,7 @@ class ResultStream:
         self.current_tweets = None
         self.next_token = None
         self.stream_started = False
-        self._tweet_func = Tweet if tweetify else lambda x: x
+        #self._tweet_func = Tweet if tweetify else lambda x: x
         # magic number of requests!
         self.max_requests = (max_requests if max_requests is not None
                              else 10 ** 9)
@@ -220,8 +220,34 @@ class ResultStream:
             for tweet in self.current_tweets:
                 if self.total_results >= self.max_tweets:
                     break
-                yield self._tweet_func(tweet)
+                yield tweet #self._tweet_func(tweet)
                 self.total_results += 1
+
+            #TODO: need to handle reponses thst do not contain these arrays.
+
+            if self.includes == None:
+                break
+
+            if 'users' in self.includes:
+                for user in self.includes['users']:
+                    yield user
+            if 'tweets' in self.includes:
+                for tweet in self.includes['tweets']:
+                    yield tweet
+            if 'media' in self.includes:
+                for media in self.includes['media']:
+                    yield media
+            if 'places' in self.includes:
+                for place in self.includes['places']:
+                    yield place
+            if 'polls' in self.includes:
+                for poll in self.includes['polls']:
+                    yield poll
+            if 'errors' in self.includes:
+                for error in self.includes['errors']:
+                    yield error
+
+
 
             if self.next_token and self.total_results < self.max_tweets and self.n_requests <= self.max_requests:
                 self.request_parameters = merge_dicts(self.request_parameters,
@@ -266,6 +292,7 @@ class ResultStream:
             meta = resp.get("meta", None)
             self.next_token = meta.get("next_token", None)
             self.current_tweets = resp.get("data", None)
+            self.includes = resp.get("includes", None)
 
         except:
             print("Error parsing content as JSON.")

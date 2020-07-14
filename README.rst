@@ -1,9 +1,9 @@
-.. image:: https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v2&color=794BC4&style=flat&logo=Twitter
+.. image:: https://img.shields.io/static/v1?label=Twitter%20API&message=v2&color=794BC4&style=flat&logo=Twitter
    :target: https://developer.twitter.com/en/docs/labs/overview/versioning
-   :alt: Labs v2
+   :alt: Twitter API v2
 
-Python client for Labs Recent search
-====================================
+Python client for the Twitter API v2 recent search endpoint
+===========================================================
 
 Welcome to the ``labs`` branch of the Python search client. This branch was born from the ``master`` branch that supports premium and enterprise tiers of Twitter search. This branch supports the  `Twitter Developer Labs Recent search v2 endpoint <https://developer.twitter.com/en/docs/labs/recent-search/overview>`__ only, and drops support for the premium and enterprise tiers.
 
@@ -63,6 +63,26 @@ Command-line options
 
 usage: search_tweets.py
 
+Connected to pydev debugger (build 173.4674.33)
+usage: search_tweets.py [-h] [--credential-file CREDENTIAL_FILE]
+                        [--credential-file-key CREDENTIAL_YAML_KEY]
+                        [--env-overwrite ENV_OVERWRITE]
+                        [--config-file CONFIG_FILENAME] [--query QUERY]
+                        [--start-time START_TIME] [--end-time END_TIME]
+                        [--since-id SINCE_ID] [--until-id UNTIL_ID]
+                        [--results-per-call RESULTS_PER_CALL]
+                        [--expansions EXPANSIONS]
+                        [--tweet-fields TWEET_FIELDS]
+                        [--user-fields USER_FIELDS]
+                        [--media-fields MEDIA_FIELDS]
+                        [--place-fields PLACE_FIELDS]
+                        [--poll-fields POLL_FIELDS] [--max-tweets MAX_TWEETS]
+                        [--max-pages MAX_PAGES]
+                        [--results-per-file RESULTS_PER_FILE]
+                        [--filename-prefix FILENAME_PREFIX]
+                        [--no-print-stream] [--print-stream]
+                        [--extra-headers EXTRA_HEADERS] [--debug]
+
 optional arguments:
   -h, --help            show this help message and exit
   --credential-file CREDENTIAL_FILE
@@ -81,14 +101,14 @@ optional arguments:
                         file is found, all args will be populated, from there.
                         Remaining command-line args, will overrule args found
                         in the config, file.
+  --query QUERY         Search query. (See:
+                        https://developer.twitter.com/en/docs/labs/recent-
+                        search/guides/search-queries)
   --start-time START_TIME
                         Start of datetime window, format 'YYYY-mm-DDTHH:MM'
                         (default: -7 days)
   --end-time END_TIME   End of datetime window, format 'YYYY-mm-DDTHH:MM'
                         (default: most recent date)
-  --query QUERY         Search query. (See:
-                        https://developer.twitter.com/en/docs/labs/recent-
-                        search/guides/search-queries)
   --since-id SINCE_ID   Tweet ID, will start search from Tweets after this
                         one. (See:
                         https://developer.twitter.com/en/docs/labs/recent-
@@ -100,6 +120,26 @@ optional arguments:
   --results-per-call RESULTS_PER_CALL
                         Number of results to return per call (default 10; max
                         100) - corresponds to 'max_results' in the API
+  --expansions EXPANSIONS
+                        A comma-delimited list of object expansions to include
+                        in endpoint responses. (API default: "")
+  --tweet-fields TWEET_FIELDS
+                        A comma-delimited list of Tweet JSON attributions to
+                        include in endpoint responses. (API default:
+                        "id,text")
+  --user-fields USER_FIELDS
+                        A comma-delimited list of user JSON attributions to
+                        include in endpoint responses. (API default: "id")
+  --media-fields MEDIA_FIELDS
+                        A comma-delimited list of media JSON attributions to
+                        include in endpoint responses. (API default: "id")
+  --place-fields PLACE_FIELDS
+                        A comma-delimited list of Twitter Place JSON
+                        attributions to include in endpoint responses. (API
+                        default: "id")
+  --poll-fields POLL_FIELDS
+                        A comma-delimited list of Tweet Poll JSON attributions
+                        to include in endpoint responses. (API default: "id")
   --max-tweets MAX_TWEETS
                         Maximum number of Tweets to return for this session of
                         requests.
@@ -115,7 +155,7 @@ optional arguments:
   --print-stream        Print tweet stream to stdout
   --extra-headers EXTRA_HEADERS
                         JSON-formatted str representing a dict of additional
-                        request headers
+                        HTTP request headers
   --debug               print all info and warning messages
 
 
