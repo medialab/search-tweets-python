@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/static/v1?label=Twitter%20API&message=v2&color=794BC4&style=flat&logo=Twitter
+.. image:: https://img.shields.io/static/v1?label=Twitter%20API&message=Labs%20v2&color=794BC4&style=flat&logo=Twitter
    :target: https://developer.twitter.com/en/docs/labs/overview/versioning
    :alt: Twitter API Labs v2
 
