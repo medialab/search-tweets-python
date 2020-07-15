@@ -1,8 +1,8 @@
 .. image:: https://img.shields.io/static/v1?label=Twitter%20API&message=v2&color=794BC4&style=flat&logo=Twitter
    :target: https://developer.twitter.com/en/docs/labs/overview/versioning
-   :alt: Twitter API v2
+   :alt: Twitter API Labs v2
 
-Python client for the Twitter API v2 recent search endpoint
+Python client for the Twitter API Labs v2 recent search endpoint
 ===========================================================
 
 Welcome to the ``labs`` branch of the Python search client. This branch was born from the ``master`` branch that supports premium and enterprise tiers of Twitter search. This branch supports the  `Twitter Developer Labs Recent search v2 endpoint <https://developer.twitter.com/en/docs/labs/recent-search/overview>`__ only, and drops support for the premium and enterprise tiers.
