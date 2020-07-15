@@ -98,12 +98,36 @@ def parse_cmd_args():
                                 "(default 10; max 100) - corresponds to "
                                 "'max_results' in the API")
 
+    argparser.add_argument("--expansions",
+                           dest="expansions",
+                           default=None,
+                           help="""A comma-delimited list of object expansions to include in endpoint responses. (API default: "")""")
+
     argparser.add_argument("--tweet-fields",
                            dest="tweet_fields",
                            default=None,
-                           help="""A comma-delimited list of Tweet JSON attributions to include in endpoint responses. (Endpoint default: "id,created_at,text")""")
+                           help="""A comma-delimited list of Tweet JSON attributions to include in endpoint responses. (API default: "id,text")""")
 
-    #client options.
+    argparser.add_argument("--user-fields",
+                           dest="user_fields",
+                           default=None,
+                           help="""A comma-delimited list of user JSON attributions to include in endpoint responses. (API default: "id")""")
+
+    argparser.add_argument("--media-fields",
+                           dest="media_fields",
+                           default=None,
+                           help="""A comma-delimited list of media JSON attributions to include in endpoint responses. (API default: "id")""")
+
+    argparser.add_argument("--place-fields",
+                           dest="place_fields",
+                           default=None,
+                           help="""A comma-delimited list of Twitter Place JSON attributions to include in endpoint responses. (API default: "id")""")
+
+    argparser.add_argument("--poll-fields",
+                           dest="poll_fields",
+                           default=None,
+                           help="""A comma-delimited list of Tweet Poll JSON attributions to include in endpoint responses. (API default: "id")""")
+
     argparser.add_argument("--max-tweets", dest="max_tweets",
                            type=int,
                            help="Maximum number of Tweets to return for this session of requests.")
