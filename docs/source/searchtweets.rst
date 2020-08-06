@@ -28,6 +28,14 @@ searchtweets\.utils module
     :undoc-members:
     :show-inheritance:
 
+searchtweets\.credentials module
+---------------------------
+
+.. automodule:: searchtweets.credentials
+:members:
+        :undoc-members:
+        :show-inheritance:
+
 
 Module contents
 ---------------

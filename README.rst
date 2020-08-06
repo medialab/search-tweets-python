@@ -3,7 +3,7 @@
    :alt: Twitter API Labs v2
 
 Python client for the Twitter API Labs v2 recent search endpoint
-===========================================================
+================================================================
 
 Welcome to the ``labs`` branch of the Python search client. This branch was born from the ``master`` branch that supports premium and enterprise tiers of Twitter search. This branch supports the  `Twitter Developer Labs Recent search v2 endpoint <https://developer.twitter.com/en/docs/labs/recent-search/overview>`__ only, and drops support for the premium and enterprise tiers.
 
@@ -62,26 +62,6 @@ Command-line options
 =====================
 
 usage: search_tweets.py
-
-Connected to pydev debugger (build 173.4674.33)
-usage: search_tweets.py [-h] [--credential-file CREDENTIAL_FILE]
-                        [--credential-file-key CREDENTIAL_YAML_KEY]
-                        [--env-overwrite ENV_OVERWRITE]
-                        [--config-file CONFIG_FILENAME] [--query QUERY]
-                        [--start-time START_TIME] [--end-time END_TIME]
-                        [--since-id SINCE_ID] [--until-id UNTIL_ID]
-                        [--results-per-call RESULTS_PER_CALL]
-                        [--expansions EXPANSIONS]
-                        [--tweet-fields TWEET_FIELDS]
-                        [--user-fields USER_FIELDS]
-                        [--media-fields MEDIA_FIELDS]
-                        [--place-fields PLACE_FIELDS]
-                        [--poll-fields POLL_FIELDS] [--max-tweets MAX_TWEETS]
-                        [--max-pages MAX_PAGES]
-                        [--results-per-file RESULTS_PER_FILE]
-                        [--filename-prefix FILENAME_PREFIX]
-                        [--no-print-stream] [--print-stream]
-                        [--extra-headers EXTRA_HEADERS] [--debug]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -555,6 +535,9 @@ commands, ran from the root directory in the repo:
    python setup.py bdist_wheel
    python setup.py sdist
    twine upload dist/*
+
+   If you hit errors when uploading the package, one thing to double-check is whether the format of the README.rst file is valid.
+   Running ```python setup.py check -r -s``` will help identify any formatting issues. 
 
 How to build the documentation:
 
