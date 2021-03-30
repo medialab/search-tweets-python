@@ -1,10 +1,12 @@
 #!/usr/bin/env python
+# Adapted from https://github.com/twitterdev/search-tweets-python/blob/v2/scripts/search_tweets.py to print in csv
 # Copyright 2020 Twitter, Inc.
 # Licensed under the Apache License, Version 2.0
 # http://www.apache.org/licenses/LICENSE-2.0
 import os
 import argparse
 import json
+import csv
 import sys
 import logging
 from searchtweets import (ResultStream,
@@ -22,6 +24,16 @@ logging.basicConfig(level=os.environ.get("LOGLEVEL", "ERROR"))
 
 REQUIRED_KEYS = {"query", "endpoint"}
 
+SIMPLE_FIELDS = [
+    "id",
+    "text",
+    "lang",
+    "created_at",
+    "source",
+    "author_id"
+]
+
+OUTPUT_FIELDS = SIMPLE_FIELDS + ["retweeted_id", "links", "retweet_count", "reply_count", "like_count", "quote_count"]
 
 def parse_cmd_args():
     argparser = argparse.ArgumentParser()
@@ -238,9 +250,22 @@ def main():
     else:
         stream = rs.stream()
 
-    for tweet in stream:
-        if config_dict["print_stream"] is True:
-            print(json.dumps(tweet))
+    if config_dict["print_stream"] is True:
+        writer = csv.DictWriter(sys.stdout, OUTPUT_FIELDS, restval='', extrasaction='ignore')
+        writer.writeheader()
+        for tweet in stream:
+                if "id" in tweet:
+                    line = {field: tweet[field] for field in SIMPLE_FIELDS}
+                    for metric in tweet["public_metrics"]:
+                        line[metric] = tweet["public_metrics"][metric]
+                    if "entities" in tweet and "urls" in tweet["entities"]:
+                        line["links"] = "|".join([url["expanded_url"] for url in tweet["entities"]["urls"]])
+                    if "referenced_tweets" in tweet:
+                        for ref in tweet["referenced_tweets"]:
+                            if ref["type"] == "retweeted":
+                                line["retweeted_id"] = ref["id"]
+                    writer.writerow(line)
+
 
 if __name__ == '__main__':
     main()
