@@ -2,6 +2,14 @@
 ..   :target: https://developer.twitter.com/en/docs/twitter-api
 ..   :alt: Twitter API v2
 
+Example query:
+===========================================================
+
+
+.. code:: bash
+
+    python scripts/search_tweets.py --query Holdup_ledoc --credential-file config.yml --tweet-fields id,text,author_id,created_at,entities,in_reply_to_user_id,source,lang,public_metrics,referenced_tweets --expansions referenced_tweets.id --max-tweets 10 > holdup.csv
+
 Python client for the Twitter API v2 search endpoints
 ===========================================================
 
